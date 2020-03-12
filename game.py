@@ -12,14 +12,18 @@ from game_stats import GameStats
 from player import Player
 from scoreboard import Scoreboard
 from settings import Settings
+from sound import Sound
 
 
 class Game:
     """ Manages game assets and logic """
 
     def __init__(self):
-        pygame.init()
         self.settings = Settings()
+        self.sound = Sound(self.settings)
+
+        pygame.init()
+        self.sound.load()
 
         # Set up the game window
         self.screen = pygame.display.set_mode((0, 0), pygame.FULLSCREEN)
@@ -110,8 +114,9 @@ class Game:
         if self.stats.ammo:
             new_bullet = Bullet(self.settings, self.player, self.stats)
             self.bullets.add(new_bullet)
+            self.sound.fire.play()
         else:
-            pass  # todo: visual effect for "no ammo"
+            self.sound.no_ammo.play()
 
     def _update_bullets(self):
         """ Update position of all bullets and get rid of old ones """
@@ -149,9 +154,10 @@ class Game:
             if enemy.rect.bottom >= self.rect.bottom:
                 return True
 
-    def _player_hit(self):
+    def _round_failed(self):
         """ Respond to the player being hit by an enemy """
         self.stats.player_lost_life()
+        self.sound.death.play()
 
         # Game over scenario
         if self.stats.health == 0:
@@ -206,11 +212,11 @@ class Game:
 
         # Check for player-enemy collisions and
         if pygame.sprite.spritecollideany(self.player, self.enemies):
-            self._player_hit()
+            self._round_failed()
 
         # Check if enemy has reached the screen bottom
         if self._has_enemy_reach_bottom():
-            self._player_hit()
+            self._round_failed()
 
     def _check_play_btn(self, mouse_pos):
         if self.play_btn.rect.collidepoint(mouse_pos):

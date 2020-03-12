@@ -40,3 +40,8 @@ class Settings:
 
         # Gameplay
         self.speedup_rate = 1.1
+
+        # Sounds
+        self.sound_fire = 'audio/fire.wav'
+        self.sound_no_ammo = 'audio/no_ammo.wav'
+        self.sound_death = 'audio/death.wav'
