@@ -21,6 +21,7 @@ class Sound:
 
     def load(self):
         mixer.init()
+        mixer.Sound(self._settings.sound_background_music).play(-1)
 
         self.fire = mixer.Sound(self._settings.sound_fire)
         self.no_ammo = mixer.Sound(self._settings.sound_no_ammo)
