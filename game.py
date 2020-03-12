@@ -139,6 +139,8 @@ class Game:
             # No collisions - nothing to do
             return
 
+        self.sound.enemy_death.play()
+
         # Score up for all killed enemies
         for enemies in collisions.values():
             self.stats.score_up(len(enemies))

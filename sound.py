@@ -6,6 +6,7 @@ from settings import Settings
 
 class Sound:
     """ Handles game sounds """
+    enemy_death: SoundType
     death: SoundType
     no_ammo: SoundType
     fire: SoundType
@@ -24,3 +25,4 @@ class Sound:
         self.fire = mixer.Sound(self._settings.sound_fire)
         self.no_ammo = mixer.Sound(self._settings.sound_no_ammo)
         self.death = mixer.Sound(self._settings.sound_death)
+        self.enemy_death = mixer.Sound(self._settings.sound_enemy_death)
