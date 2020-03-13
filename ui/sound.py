@@ -1,3 +1,6 @@
+from random import choice
+from typing import Tuple
+
 from pygame import mixer
 from pygame.mixer import SoundType
 
@@ -6,7 +9,7 @@ from settings import Settings
 
 class Sound:
     """ Handles game sounds """
-    enemy_death: SoundType
+    _enemy_death: Tuple[SoundType]
     death: SoundType
     no_ammo: SoundType
     fire: SoundType
@@ -26,4 +29,8 @@ class Sound:
         self.fire = mixer.Sound(self._settings.sound_fire)
         self.no_ammo = mixer.Sound(self._settings.sound_no_ammo)
         self.death = mixer.Sound(self._settings.sound_death)
-        self.enemy_death = mixer.Sound(self._settings.sound_enemy_death)
+        self._enemy_death = tuple(map(lambda file: mixer.Sound(file), self._settings.sound_set_enemy_death))
+
+    @property
+    def enemy_death(self):
+        return choice(self._enemy_death)
