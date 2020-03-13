@@ -7,7 +7,7 @@ import pygame
 from game_objects.bullet import Bullet
 from game_objects.enemy import Enemy
 from game_objects.player import Player
-from movement.snake import Snake
+from movement.falling_sideways_shacking import FallingSidewaysShacking
 from movement.straigt_up import StraightUp
 from settings import Settings
 from ui.background import Background
@@ -20,7 +20,9 @@ from ui.stats import Stats
 class Game:
     """ Manages game assets and logic """
 
-    enemy_movement_scheme = Snake
+    # movement.snake.Snake or movement.falling_sideways.FallingSidewaysShacking
+    enemy_movement_scheme = FallingSidewaysShacking
+
     bullet_movement_scheme = StraightUp
 
     def __init__(self):
@@ -208,6 +210,11 @@ class Game:
         """ Create an enemy and place it """
         enemy = Enemy(self.settings, self.screen, self.stats, self.enemy_movement_scheme)
         enemy_w, enemy_h = enemy.rect.size
+
+        # If enemy movement is set to FallingSidewaysShacking create only one row visible
+        # and others are hidden up the screen
+        if self.enemy_movement_scheme == FallingSidewaysShacking:
+            enemy_number_y *= -1
 
         x = margin_x + ((enemy_w + margin_x) * enemy_number_x)
         y = (enemy_h + margin_y) * enemy_number_y
