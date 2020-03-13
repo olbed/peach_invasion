@@ -20,9 +20,9 @@ class Bullet(Object):
         self._movement_scheme = movement_scheme(self.rect, screen.get_rect(), stats.bullet_speed)
 
         # Set bullet's start position
-        start_pos = player.rect.midtop
-        start_pos[1] - self.rect.width / 2
-        self._movement_scheme.position = start_pos
+        x, y = player.rect.midtop
+        x -= self.rect.width / 2
+        self._movement_scheme.position = x, y
 
     def update(self):
         """ Move the bullet up the screen """
