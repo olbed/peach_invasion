@@ -2,7 +2,7 @@ from pygame import image
 from pygame.sprite import Sprite
 
 
-class GameObject(Sprite):
+class Object(Sprite):
     """ Represents any visual object in game """
 
     def __init__(self, object_image):

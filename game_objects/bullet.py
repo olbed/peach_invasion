@@ -1,13 +1,13 @@
-from game_object import GameObject
-from game_stats import GameStats
-from player import Player
+from game_objects.object import Object
+from game_objects.player import Player
 from settings import Settings
+from ui.stats import Stats
 
 
-class Bullet(GameObject):
+class Bullet(Object):
     """ Handle bullet firing """
 
-    def __init__(self, settings: Settings, player: Player, stats: GameStats):
+    def __init__(self, settings: Settings, player: Player, stats: Stats):
         super().__init__(settings.bullet_image)
 
         self._stats = stats

@@ -4,22 +4,22 @@ from time import sleep
 
 import pygame
 
-from background import Background
-from bullet import Bullet
-from button import Button
-from enemy import Enemy
-from game_stats import GameStats
-from player import Player
-from scoreboard import Scoreboard
+from game_objects.bullet import Bullet
+from game_objects.enemy import Enemy
+from game_objects.player import Player
+from movement.snake import Snake
 from settings import Settings
-from snake_movement import SnakeMovement
-from sound import Sound
+from ui.background import Background
+from ui.button import Button
+from ui.scoreboard import Scoreboard
+from ui.sound import Sound
+from ui.stats import Stats
 
 
 class Game:
     """ Manages game assets and logic """
 
-    enemy_movement_scheme = SnakeMovement
+    enemy_movement_scheme = Snake
 
     def __init__(self):
         self.settings = Settings()
@@ -34,7 +34,7 @@ class Game:
 
         # Statistics and current state
         self.scoreboard = Scoreboard(self.settings, self.screen)
-        self.stats = GameStats(self.settings, self.scoreboard)
+        self.stats = Stats(self.settings, self.scoreboard)
 
         # Game elements
         self.background = Background(self.settings, self.screen)

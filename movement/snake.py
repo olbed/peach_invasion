@@ -1,7 +1,7 @@
-from movement_scheme import MovementScheme
+from movement.scheme import Scheme
 
 
-class SnakeMovement(MovementScheme):
+class Snake(Scheme):
     """ Moves object in a snake way, right-down-left-down and so on"""
 
     def __init__(self, object_rect, screen_rect, speed):

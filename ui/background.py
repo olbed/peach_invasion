@@ -3,7 +3,7 @@ from random import randint
 from pygame import Surface
 from pygame.sprite import Group
 
-from game_object import GameObject
+from game_objects.object import Object
 from settings import Settings
 
 
@@ -25,7 +25,7 @@ class Background:
         self._screen.fill(self._settings.bg_color)
         self._grass.draw(self._screen)
 
-    class Grass(GameObject):
+    class Grass(Object):
         """ Represents one grass object """
 
         def __init__(self, settings: Settings, screen_size):

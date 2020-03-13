@@ -1,8 +1,8 @@
-from scoreboard import Scoreboard
 from settings import Settings
+from ui.scoreboard import Scoreboard
 
 
-class GameStats:
+class Stats:
     """ Track gaming statistics """
 
     def __init__(self, settings: Settings, scoreboard: Scoreboard):

@@ -1,14 +1,14 @@
 from pygame import Surface
 
-from game_object import GameObject
-from game_stats import GameStats
+from game_objects.object import Object
 from settings import Settings
+from ui.stats import Stats
 
 
-class Player(GameObject):
+class Player(Object):
     """ Represents player """
 
-    def __init__(self, settings: Settings, screen: Surface, stats: GameStats):
+    def __init__(self, settings: Settings, screen: Surface, stats: Stats):
         super().__init__(settings.player_image)
 
         self._stats = stats
