@@ -1,4 +1,6 @@
 class MovementScheme:
+    """ Defines how object moves on the screen """
+
     def __init__(self, object_rect, screen_rect, speed):
         self._object_rect = object_rect
         self._screen_rect = screen_rect
