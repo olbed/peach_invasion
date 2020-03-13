@@ -155,6 +155,7 @@ class Game:
 
         # Create new group of enemies if there is no more left
         if not self.enemies:
+            self.sound.victory.play()
             self.stats.level_up()
             self._new_round()
 

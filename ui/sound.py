@@ -9,10 +9,11 @@ from settings import Settings
 
 class Sound:
     """ Handles game sounds """
-    _enemy_death: Tuple[SoundType]
-    death: SoundType
-    no_ammo: SoundType
     fire: SoundType
+    no_ammo: SoundType
+    death: SoundType
+    victory: SoundType
+    _enemy_death: Tuple[SoundType]
 
     def __init__(self, settings: Settings):
         self._settings = settings
@@ -29,6 +30,7 @@ class Sound:
         self.fire = mixer.Sound(self._settings.sound_fire)
         self.no_ammo = mixer.Sound(self._settings.sound_no_ammo)
         self.death = mixer.Sound(self._settings.sound_death)
+        self.victory = mixer.Sound(self._settings.sound_victory)
         self._enemy_death = tuple(map(lambda file: mixer.Sound(file), self._settings.sound_set_enemy_death))
 
     @property

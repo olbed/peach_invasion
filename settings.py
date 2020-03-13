@@ -47,6 +47,7 @@ class Settings:
         self.sound_fire = 'audio/fire.wav'
         self.sound_no_ammo = 'audio/no_ammo.wav'
         self.sound_death = 'audio/death.wav'
+        self.sound_victory = 'audio/victory.ogg'
         self.sound_set_enemy_death = (
             'audio/enemy_death_1.ogg',
             'audio/enemy_death_2.wav',
