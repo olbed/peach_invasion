@@ -17,7 +17,7 @@ class Background:
         self._grass = Group()
 
         for _ in range(self._settings.bg_grass_number):
-            new_grass = Grass(settings, screen.get_rect().size)
+            new_grass = self.Grass(settings, screen.get_rect().size)
             self._grass.add(new_grass)
 
     def draw(self):
@@ -25,19 +25,18 @@ class Background:
         self._screen.fill(self._settings.bg_color)
         self._grass.draw(self._screen)
 
+    class Grass(GameObject):
+        """ Represents one grass object """
 
-class Grass(GameObject):
-    """ Represents one grass object """
+        def __init__(self, settings: Settings, screen_size):
+            super().__init__(settings.bg_grass_image)
 
-    def __init__(self, settings: Settings, screen_size):
-        super().__init__(settings.bg_grass_image)
+            self._screen_size = screen_size
+            self.rect = self._get_random_position()
 
-        self._screen_size = screen_size
-        self.rect = self._get_random_position()
-
-    def _get_random_position(self):
-        grass_w, grass_h = self.image.get_rect().size
-        screen_w, screen_h = self._screen_size
-        max_x = screen_w - grass_w
-        max_y = screen_h - grass_h
-        return randint(0, max_x), randint(0, max_y)
+        def _get_random_position(self):
+            grass_w, grass_h = self.image.get_rect().size
+            screen_w, screen_h = self._screen_size
+            max_x = screen_w - grass_w
+            max_y = screen_h - grass_h
+            return randint(0, max_x), randint(0, max_y)
