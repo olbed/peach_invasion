@@ -9,17 +9,17 @@ from bullet import Bullet
 from button import Button
 from enemy import Enemy
 from game_stats import GameStats
-from movement_scheme import SnakeMovement
 from player import Player
 from scoreboard import Scoreboard
 from settings import Settings
+from snake_movement import SnakeMovement
 from sound import Sound
 
 
 class Game:
     """ Manages game assets and logic """
 
-    enemy_moving_scheme = SnakeMovement
+    enemy_movement_scheme = SnakeMovement
 
     def __init__(self):
         self.settings = Settings()
@@ -182,7 +182,7 @@ class Game:
     def _create_enemies(self):
         """ Create the enemies """
         # Prepare width and height of objects
-        enemy_w, enemy_h = Enemy(self.settings, self.screen, self.stats, self.enemy_moving_scheme).rect.size
+        enemy_w, enemy_h = Enemy(self.settings, self.screen, self.stats, self.enemy_movement_scheme).rect.size
         screen_w, screen_h = self.rect.size
         player_h = self.player.rect.height
         margin_x, margin_y = enemy_w, enemy_h
@@ -203,7 +203,7 @@ class Game:
 
     def _create_enemy(self, enemy_number_x, enemy_number_y, margin_x, margin_y):
         """ Create an enemy and place it """
-        enemy = Enemy(self.settings, self.screen, self.stats, self.enemy_moving_scheme)
+        enemy = Enemy(self.settings, self.screen, self.stats, self.enemy_movement_scheme)
         enemy_w, enemy_h = enemy.rect.size
 
         x = margin_x + ((enemy_w + margin_x) * enemy_number_x)
