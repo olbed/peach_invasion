@@ -8,6 +8,7 @@ from game_objects.bullet import Bullet
 from game_objects.enemy import Enemy
 from game_objects.player import Player
 from movement.snake import Snake
+from movement.straigt_up import StraightUp
 from settings import Settings
 from ui.background import Background
 from ui.button import Button
@@ -20,6 +21,7 @@ class Game:
     """ Manages game assets and logic """
 
     enemy_movement_scheme = Snake
+    bullet_movement_scheme = StraightUp
 
     def __init__(self):
         self.settings = Settings()
@@ -115,7 +117,8 @@ class Game:
 
     def _fire_bullet(self):
         if self.stats.ammo:
-            new_bullet = Bullet(self.settings, self.player, self.stats)
+            new_bullet = Bullet(self.settings, self.screen, self.player,
+                                self.stats, self.bullet_movement_scheme)
             self.bullets.add(new_bullet)
             self.sound.fire.play()
         else:

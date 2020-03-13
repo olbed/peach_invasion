@@ -11,7 +11,8 @@ from ui.stats import Stats
 class Enemy(Object):
     """ Handles single enemy """
 
-    def __init__(self, settings: Settings, screen: Surface, stats: Stats, movement_scheme: Type[Scheme]):
+    def __init__(self, settings: Settings, screen: Surface, stats: Stats,
+                 movement_scheme: Type[Scheme]):
         super().__init__(settings.enemy_image)
 
         # Init enemy movement scheme
