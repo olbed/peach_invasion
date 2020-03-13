@@ -1,5 +1,5 @@
 import sys
-from random import randint
+from random import random
 from time import sleep
 
 import pygame
@@ -203,7 +203,7 @@ class Game:
         # Create enemies
         for enemy_number_y in range(number_enemies_y):
             for enemy_number_x in range(number_enemies_x):
-                if randint(0, 1) == 0:
+                if random() < self.settings.enemy_density:
                     self._create_enemy(enemy_number_x, enemy_number_y, margin_x, margin_y)
 
     def _create_enemy(self, enemy_number_x, enemy_number_y, margin_x, margin_y):

@@ -13,6 +13,7 @@ class Settings:
         # Enemy
         self.enemy_image = 'images/enemy.bmp'
         self.enemy_speed = 1.0
+        self.enemy_density = .5
 
         # Ammo
         self.ammo_image = 'images/ammo.bmp'
