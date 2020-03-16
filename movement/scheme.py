@@ -1,17 +1,15 @@
 class Scheme:
     """ Defines how object moves on the screen """
 
-    def __init__(self, object_rect, screen_rect, speed):
+    def __init__(self, object_rect, screen_rect):
         self._object_rect = object_rect
         self._screen_rect = screen_rect
-        self._speed = speed
 
         # Store a float values of object position for higher accuracy when updating
         self._position = [0.0, 0.0]
 
-        # First number corresponds for horizontal movement: 1 = right, -1 = left, 0 = not moving
-        # Second number corresponds for vertical movement: 1 = down, -1 = up, 0 = not moving
-        self._direction = [0, 0]
+        # Horizontal and vertical speed, shows how many pixels object moves in one step
+        self._speed = [0.0, 0.0]
 
     def _is_at_right_screen_edge(self):
         return self._object_rect.right >= self._screen_rect.right
@@ -22,7 +20,7 @@ class Scheme:
     def move(self):
         """ Moves object 1 step in current direction with current speed """
         x, y = self.position
-        x_path, y_path = map(lambda direction: direction * self._speed, self.direction)
+        x_path, y_path = self._speed
         self.position = x + x_path, y + y_path
         return x_path, y_path
 
@@ -31,8 +29,8 @@ class Scheme:
         return self._position
 
     @position.setter
-    def position(self, pos):
-        x, y = pos
+    def position(self, xy):
+        x, y = xy
         if x is not None:
             self._position[0] = float(x)
             self._object_rect.x = self._position[0]
@@ -41,13 +39,19 @@ class Scheme:
             self._object_rect.y = self._position[1]
 
     @property
-    def direction(self):
-        return self._direction
+    def speed(self):
+        return self._speed
 
-    @direction.setter
-    def direction(self, pos):
-        x, y = pos
+    @speed.setter
+    def speed(self, xy):
+        x, y = xy
         if x is not None:
-            self._direction[0] = x
+            self._speed[0] = x
         if y is not None:
-            self._direction[1] = y
+            self._speed[1] = y
+
+    def reverse_x_speed(self):
+        self._speed[0] *= -1
+
+    def reverse_y_speed(self):
+        self._speed[1] *= -1

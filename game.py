@@ -6,8 +6,7 @@ import pygame
 from game_objects.bullet import Bullet
 from game_objects.enemy import Enemy
 from game_objects.player import Player
-from movement.falling_sideways_shacking import FallingSidewaysShaking
-from movement.straigt_up import StraightUp
+from movement.falling_sideways_shaking import FallingSidewaysShaking
 from settings import Settings
 from ui.background import Background
 from ui.button import Button
@@ -19,10 +18,10 @@ from ui.stats import Stats
 class Game:
     """ Manages game assets and logic """
 
-    # movement.snake.Snake or movement.falling_sideways.FallingSidewaysShaking
+    # Possible options:
+    # movement.falling_sideways.FallingSideways
+    # movement.falling_sideways_shaking.FallingSidewaysShaking
     enemy_movement_scheme = FallingSidewaysShaking
-
-    bullet_movement_scheme = StraightUp
 
     def __init__(self):
         # Game settings
@@ -120,8 +119,7 @@ class Game:
 
     def _fire_bullet(self):
         if self.stats.ammo:
-            new_bullet = Bullet(self.settings, self.screen, self.player,
-                                self.stats, self.bullet_movement_scheme)
+            new_bullet = Bullet(self.settings, self.screen, self.player, self.stats)
             self.bullets.add(new_bullet)
             self.sound.fire.play()
         else:

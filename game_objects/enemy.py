@@ -4,7 +4,6 @@ from typing import Type
 from pygame import Surface
 
 from game_objects.object import Object
-from movement.falling_sideways_shacking import FallingSidewaysShaking
 from movement.scheme import Scheme
 from settings import Settings
 from ui.stats import Stats
@@ -18,7 +17,8 @@ class Enemy(Object):
         super().__init__(settings.enemy_image)
 
         # Init enemy movement scheme
-        self._movement_scheme = movement_scheme(self.rect, screen.get_rect(), stats.enemy_speed)
+        self._movement_scheme = movement_scheme(self.rect, screen.get_rect())
+        self._movement_scheme.speed = stats.enemy_speed
 
     def update(self):
         """ Moves enemy as described by movement scheme """
@@ -30,14 +30,9 @@ class Enemy(Object):
 
     def set_col_row_position(self, col, row):
         """ Sets position of the enemy by its row and col number """
-        # If enemy movement is FallingSidewaysShaking create enemies in opposite direction
-        # so only the first row visible and others are hidden up the screen
-        if isinstance(self._movement_scheme, FallingSidewaysShaking):
-            row *= -1
-
         enemy_w, enemy_h = self.rect.size
         x = enemy_w + (2 * enemy_w * col)
-        y = 2 * enemy_h * row
+        y = -2 * enemy_h * row
         self.set_xy_position(x, y)
 
     @staticmethod

@@ -12,7 +12,8 @@ class Settings:
 
         # Enemy
         self.enemy_image = 'images/enemy.bmp'
-        self.enemy_speed = 1.0
+        self.enemy_x_speed = 1.0
+        self.enemy_y_speed = .15
         self.enemy_density = .5
         self.enemy_vertical_space_occupied = .5
 

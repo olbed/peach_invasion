@@ -66,11 +66,12 @@ class Stats:
 
     @property
     def enemy_speed(self):
-        return self._settings.enemy_speed * self._game_speed
+        return self._settings.enemy_x_speed * self._game_speed, \
+               self._settings.enemy_y_speed * self._game_speed
 
     @property
     def bullet_speed(self):
-        return self._settings.bullet_speed * self._game_speed
+        return 0, -self._settings.bullet_speed * self._game_speed
 
     @property
     def _game_speed(self):
