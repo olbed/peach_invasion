@@ -1,5 +1,4 @@
 import sys
-from random import random
 from time import sleep
 
 import pygame
@@ -7,7 +6,7 @@ import pygame
 from game_objects.bullet import Bullet
 from game_objects.enemy import Enemy
 from game_objects.player import Player
-from movement.falling_sideways_shacking import FallingSidewaysShacking
+from movement.falling_sideways_shacking import FallingSidewaysShaking
 from movement.straigt_up import StraightUp
 from settings import Settings
 from ui.background import Background
@@ -20,15 +19,17 @@ from ui.stats import Stats
 class Game:
     """ Manages game assets and logic """
 
-    # movement.snake.Snake or movement.falling_sideways.FallingSidewaysShacking
-    enemy_movement_scheme = FallingSidewaysShacking
+    # movement.snake.Snake or movement.falling_sideways.FallingSidewaysShaking
+    enemy_movement_scheme = FallingSidewaysShaking
 
     bullet_movement_scheme = StraightUp
 
     def __init__(self):
+        # Game settings
         self.settings = Settings()
-        self.sound = Sound(self.settings)
 
+        # Initiate pygame and mixer
+        self.sound = Sound(self.settings)
         pygame.init()
         self.sound.load()
 
@@ -36,7 +37,7 @@ class Game:
         self.screen = pygame.display.set_mode((0, 0), pygame.FULLSCREEN)
         self.rect = self.screen.get_rect()
 
-        # Statistics and current state
+        # Current state
         self.scoreboard = Scoreboard(self.settings, self.screen)
         self.stats = Stats(self.settings, self.scoreboard)
 
@@ -59,9 +60,6 @@ class Game:
 
             if self.game_active:
                 self._update_elements()
-
-            # Hide mouse when game is active and show if not
-            pygame.mouse.set_visible(not self.game_active)
 
             self._redraw_screen()
 
@@ -114,6 +112,9 @@ class Game:
 
         if not self.game_active:
             self.play_btn.draw()
+
+        # Hide mouse when game is active and show if not
+        pygame.mouse.set_visible(not self.game_active)
 
         pygame.display.flip()
 
@@ -186,42 +187,8 @@ class Game:
         self.player.center_player()
 
     def _create_enemies(self):
-        """ Create the enemies """
-        # Prepare width and height of objects
-        enemy_w, enemy_h = Enemy(self.settings, self.screen, self.stats, self.enemy_movement_scheme).rect.size
-        screen_w, screen_h = self.rect.size
-        player_h = self.player.rect.height
-        margin_x, margin_y = enemy_w, enemy_h
-
-        # Count how many enemies fit on the screen horizontally
-        available_space_x = screen_w - (2 * margin_x)
-        number_enemies_x = available_space_x // (enemy_w + margin_x)
-
-        # Count how many enemies fit on the screen vertically
-        available_space_y = (screen_h - player_h) * .8  # 80% of free space
-        number_enemies_y = int(available_space_y) // (enemy_h + margin_y)
-
-        # Create enemies
-        for enemy_number_y in range(number_enemies_y):
-            for enemy_number_x in range(number_enemies_x):
-                if random() < self.settings.enemy_density:
-                    self._create_enemy(enemy_number_x, enemy_number_y, margin_x, margin_y)
-
-    def _create_enemy(self, enemy_number_x, enemy_number_y, margin_x, margin_y):
-        """ Create an enemy and place it """
-        enemy = Enemy(self.settings, self.screen, self.stats, self.enemy_movement_scheme)
-        enemy_w, enemy_h = enemy.rect.size
-
-        # If enemy movement is set to FallingSidewaysShacking create only one row visible
-        # and others are hidden up the screen
-        if self.enemy_movement_scheme == FallingSidewaysShacking:
-            enemy_number_y *= -1
-
-        x = margin_x + ((enemy_w + margin_x) * enemy_number_x)
-        y = (enemy_h + margin_y) * enemy_number_y
-        enemy.set_initial_position(x, y)
-
-        self.enemies.add(enemy)
+        enemies = Enemy.create_all(self.settings, self.screen, self.stats, self.enemy_movement_scheme)
+        self.enemies.add(enemies)
 
     def _update_enemies(self):
         """ Update all enemies positions """

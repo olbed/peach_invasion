@@ -3,7 +3,7 @@ from random import random
 from movement.scheme import Scheme
 
 
-class FallingSidewaysShacking(Scheme):
+class FallingSidewaysShaking(Scheme):
     """ Moves object down and sideways and make it shacking """
 
     # Chances that object will go wrong way, it makes it shaking
