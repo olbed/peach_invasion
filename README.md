@@ -17,4 +17,4 @@ python main.py
 - Arrows - Move
 - Esc - Exit
 
-[screenshot](screenshot.png)
+![screenshot](screenshot.png)
