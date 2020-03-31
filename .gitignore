@@ -1,4 +1,7 @@
-/.idea/
+# Python local files
 /venv/
-/__pycache__/
-/image_originals/
+*.pyc
+
+# IDE configs
+/.idea/
+/.vscode/

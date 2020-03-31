@@ -1,3 +1,5 @@
+#!/usr/bin/env python
+"""Play peach invasion game"""
 import sys
 from time import sleep
 
