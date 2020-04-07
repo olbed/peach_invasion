@@ -1,3 +1,6 @@
+from pathlib import Path
+
+
 class Settings:
     """ Stores game settings """
 
@@ -58,10 +61,10 @@ class Settings:
             'enemy_death_5.wav',
         )
 
-    @staticmethod
-    def image_absolute_path(rel_path):
-        return f'static/images/{rel_path}'
+        self.static = Path(__file__).parent.absolute().joinpath('static')
 
-    @staticmethod
-    def audio_absolute_path(rel_path):
-        return f'static/audio/{rel_path}'
+    def image_absolute_path(self, rel_path):
+        return f'{self.static}/images/{rel_path}'
+
+    def audio_absolute_path(self, rel_path):
+        return f'{self.static}/audio/{rel_path}'
