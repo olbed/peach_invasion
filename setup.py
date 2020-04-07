@@ -5,7 +5,7 @@ with open('README.md') as fh:
 
 setuptools.setup(
     name='peach_invasion',
-    version='0.0.3',
+    version='0.1.0',
     author='olbed',
     description='Peach invasion 2D game with pygame',
     long_description=long_description,

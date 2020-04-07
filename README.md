@@ -17,4 +17,4 @@ peach_invasion
 - Arrows - Move
 - Esc - Exit
 
-![screenshot](peach_invasion/static/images/screenshot.png)
+![screenshot](https://raw.githubusercontent.com/olbed/peach_invasion/master/peach_invasion/static/images/screenshot.png)
