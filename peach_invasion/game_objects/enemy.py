@@ -3,10 +3,10 @@ from typing import Type
 
 from pygame import Surface
 
-from game_objects.object import Object
-from movement.scheme import Scheme
-from settings import Settings
-from ui.stats import Stats
+from peach_invasion.game_objects.object import Object
+from peach_invasion.movement.scheme import Scheme
+from peach_invasion.settings import Settings
+from peach_invasion.ui.stats import Stats
 
 
 class Enemy(Object):
@@ -14,7 +14,7 @@ class Enemy(Object):
 
     def __init__(self, settings: Settings, screen: Surface, stats: Stats,
                  movement_scheme: Type[Scheme]):
-        super().__init__(settings.enemy_image)
+        super().__init__(settings.image_absolute_path(settings.enemy_image))
 
         # Init enemy movement scheme
         self._movement_scheme = movement_scheme(self.rect, screen.get_rect())

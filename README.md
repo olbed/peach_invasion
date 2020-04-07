@@ -1,16 +1,6 @@
 # 🍑 Peach Invasion 🍆 ️
 
-2D game example with python and pygame
-
-## Run
-python 3.8+ required
-
-```sh
-python -m venv venv
-source venv/bin/activate
-pip install -r requirements.txt
-python main.py
-```
+2D game with pygame
 
 - Enter - Start
 - Space - Fire

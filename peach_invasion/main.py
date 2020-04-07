@@ -5,16 +5,16 @@ from time import sleep
 
 import pygame
 
-from game_objects.bullet import Bullet
-from game_objects.enemy import Enemy
-from game_objects.player import Player
-from movement.falling_sideways_shaking import FallingSidewaysShaking
-from settings import Settings
-from ui.background import Background
-from ui.button import Button
-from ui.scoreboard import Scoreboard
-from ui.sound import Sound
-from ui.stats import Stats
+from peach_invasion.game_objects.bullet import Bullet
+from peach_invasion.game_objects.enemy import Enemy
+from peach_invasion.game_objects.player import Player
+from peach_invasion.movement.falling_sideways_shaking import FallingSidewaysShaking
+from peach_invasion.settings import Settings
+from peach_invasion.ui.background import Background
+from peach_invasion.ui.button import Button
+from peach_invasion.ui.scoreboard import Scoreboard
+from peach_invasion.ui.sound import Sound
+from peach_invasion.ui.stats import Stats
 
 
 class Game:
@@ -216,5 +216,11 @@ class Game:
         self.game_active = True
 
 
-if __name__ == '__main__':
+def run():
+    """ Entry point """
     Game().run()
+
+
+if __name__ == '__main__':
+    """ Development entry point """
+    run()

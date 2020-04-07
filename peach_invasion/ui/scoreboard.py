@@ -3,8 +3,8 @@ from pygame.rect import Rect
 from pygame.sprite import Group
 from pygame.surface import Surface
 
-from game_objects.object import Object
-from settings import Settings
+from peach_invasion.game_objects.object import Object
+from peach_invasion.settings import Settings
 
 
 class Scoreboard:
@@ -62,7 +62,7 @@ class Scoreboard:
     def render_ammo(self, ammo):
         self._ammo = Group()
         for i in range(ammo):
-            ammo = Object(self._settings.ammo_image)
+            ammo = Object(self._settings.image_absolute_path(self._settings.ammo_image))
             ammo.rect.right = (self._screen_rect.right - self._margin) - i * (ammo.rect.width + self._margin)
             ammo.rect.bottom = self._screen_rect.bottom - self._margin
             self._ammo.add(ammo)
@@ -70,7 +70,7 @@ class Scoreboard:
     def render_health(self, health):
         self._health = Group()
         for i in range(health):
-            health = Object(self._settings.health_image)
+            health = Object(self._settings.image_absolute_path(self._settings.health_image))
             health.rect.left = self._margin
             health.rect.bottom = (self._screen_rect.bottom - self._margin) - i * (health.rect.height + self._margin)
             self._health.add(health)

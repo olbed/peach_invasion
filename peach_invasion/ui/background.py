@@ -3,8 +3,8 @@ from random import randint
 from pygame import Surface
 from pygame.sprite import Group
 
-from game_objects.object import Object
-from settings import Settings
+from peach_invasion.game_objects.object import Object
+from peach_invasion.settings import Settings
 
 
 class Background:
@@ -29,7 +29,7 @@ class Background:
         """ Represents one grass object """
 
         def __init__(self, settings: Settings, screen_size):
-            super().__init__(settings.bg_grass_image)
+            super().__init__(settings.image_absolute_path(settings.bg_grass_image))
 
             self._screen_size = screen_size
             self.rect = self._get_random_position()

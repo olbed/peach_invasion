@@ -3,31 +3,31 @@ class Settings:
 
     def __init__(self):
         # Player
-        self.player_image = 'images/player.bmp'
+        self.player_image = 'player.bmp'
         self.player_speed = 4.5
 
         # Bullets
-        self.bullet_image = 'images/bullet.bmp'
+        self.bullet_image = 'bullet.bmp'
         self.bullet_speed = 6.5
 
         # Enemy
-        self.enemy_image = 'images/enemy.bmp'
+        self.enemy_image = 'enemy.bmp'
         self.enemy_x_speed = 1.0
         self.enemy_y_speed = .15
         self.enemy_density = .5
         self.enemy_vertical_space_occupied = .5
 
         # Ammo
-        self.ammo_image = 'images/ammo.bmp'
+        self.ammo_image = 'ammo.bmp'
         self.ammo_limit = 2
 
         # Health
-        self.health_image = 'images/health.bmp'
+        self.health_image = 'health.bmp'
         self.health_limit = 3
 
         # Background
         self.bg_color = (20, 60, 30)
-        self.bg_grass_image = 'images/grass.bmp'
+        self.bg_grass_image = 'grass.bmp'
         self.bg_grass_number = 35
 
         # Scoreboard
@@ -45,15 +45,23 @@ class Settings:
         self.speedup_rate = 1.1
 
         # Sounds
-        self.sound_background_music = 'audio/background.wav'
-        self.sound_fire = 'audio/fire.wav'
-        self.sound_no_ammo = 'audio/no_ammo.wav'
-        self.sound_death = 'audio/death.wav'
-        self.sound_victory = 'audio/victory.ogg'
+        self.sound_background_music = 'background.wav'
+        self.sound_fire = 'fire.wav'
+        self.sound_no_ammo = 'no_ammo.wav'
+        self.sound_death = 'death.wav'
+        self.sound_victory = 'victory.ogg'
         self.sound_set_enemy_death = (
-            'audio/enemy_death_1.ogg',
-            'audio/enemy_death_2.wav',
-            'audio/enemy_death_3.wav',
-            'audio/enemy_death_4.wav',
-            'audio/enemy_death_5.wav',
+            'enemy_death_1.ogg',
+            'enemy_death_2.wav',
+            'enemy_death_3.wav',
+            'enemy_death_4.wav',
+            'enemy_death_5.wav',
         )
+
+    @staticmethod
+    def image_absolute_path(rel_path):
+        return f'static/images/{rel_path}'
+
+    @staticmethod
+    def audio_absolute_path(rel_path):
+        return f'static/audio/{rel_path}'

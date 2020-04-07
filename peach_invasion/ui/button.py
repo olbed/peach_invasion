@@ -2,7 +2,7 @@ from pygame.font import SysFont
 from pygame.rect import Rect
 from pygame.surface import Surface
 
-from settings import Settings
+from peach_invasion.settings import Settings
 
 
 class Button:

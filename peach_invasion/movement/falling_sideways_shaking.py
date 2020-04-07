@@ -1,6 +1,6 @@
 from random import random
 
-from movement.falling_sideways import FallingSideways
+from peach_invasion.movement.falling_sideways import FallingSideways
 
 
 class FallingSidewaysShaking(FallingSideways):

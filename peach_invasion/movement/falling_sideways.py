@@ -1,4 +1,4 @@
-from movement.scheme import Scheme
+from peach_invasion.movement.scheme import Scheme
 
 
 class FallingSideways(Scheme):

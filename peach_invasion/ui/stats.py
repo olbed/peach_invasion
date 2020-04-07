@@ -1,5 +1,5 @@
-from settings import Settings
-from ui.scoreboard import Scoreboard
+from peach_invasion.settings import Settings
+from peach_invasion.ui.scoreboard import Scoreboard
 
 
 class Stats:

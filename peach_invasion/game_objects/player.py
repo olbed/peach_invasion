@@ -1,15 +1,15 @@
 from pygame import Surface
 
-from game_objects.object import Object
-from settings import Settings
-from ui.stats import Stats
+from peach_invasion.game_objects.object import Object
+from peach_invasion.settings import Settings
+from peach_invasion.ui.stats import Stats
 
 
 class Player(Object):
     """ Represents player """
 
     def __init__(self, settings: Settings, screen: Surface, stats: Stats):
-        super().__init__(settings.player_image)
+        super().__init__(settings.image_absolute_path(settings.player_image))
 
         self._stats = stats
         self._screen = screen
